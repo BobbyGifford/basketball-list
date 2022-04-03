@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
+import Button from '@mui/material/Button';
 
 export const Home = () => {
+  // Fetches initial player list
   useEffect(() => {
     axios
       .get('http://data.nba.net/10s/prod/v1/2021/players.json')
@@ -13,5 +15,9 @@ export const Home = () => {
       });
   }, []);
 
-  return <div>Home</div>;
+  return (
+    <div>
+      <Button variant='contained'>example</Button>Home
+    </div>
+  );
 };
