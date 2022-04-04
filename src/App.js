@@ -1,15 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { PlayerList, PlayerDetails } from './Pages';
+import { PlayerList } from './Pages';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<PlayerList />} />
-        <Route path='/player/:id' element={<PlayerDetails />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <PlayerList />;
 }
 
 export default App;

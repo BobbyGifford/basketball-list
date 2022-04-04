@@ -31,56 +31,67 @@ export const PlayerList = () => {
 
   return (
     <>
-      <Grid container justifyContent={'center'}>
-        <Typography variant='h6' gutterBottom component='div'>
-          Selected Players
-        </Typography>
-      </Grid>
+      <Typography variant='h6' gutterBottom component='div' align={'center'}>
+        Selected Players
+      </Typography>
 
-      {/* Only render current team component if selected players exist */}
-      {selectedPlayers !== [] && (
-        <CurrentTeam
-          selectedPlayers={selectedPlayers}
-          setSelectedPlayers={setSelectedPlayers}
-        />
-      )}
-
-      <Grid container justifyContent={'center'}>
-        <Typography variant='h6' gutterBottom component='div'>
-          Available Players
-        </Typography>
-      </Grid>
-      <List>
-        {playerList.map((player) => (
-          <ListItem
-            key={`available-player-${player.lastName}-${player.personId}`}
-          >
-            <ListItemAvatar>
-              <Avatar
-                alt={`${player.firstName} ${player.lastName}`}
-                src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.personId}.png`}
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={`${player.firstName} ${player.lastName}`}
-              secondary={`Position: ${player.pos}`}
+      <Grid container spacing={0} justifyContent='center'>
+        <Grid item xs lg />
+        <Grid item xs={8} lg={6}>
+          {/* Only render current team component if selected players exist */}
+          {selectedPlayers !== [] && (
+            <CurrentTeam
+              selectedPlayers={selectedPlayers}
+              setSelectedPlayers={setSelectedPlayers}
             />
-            <Button
-              variant='contained'
-              disabled={
-                // disables add button if the player is alread in the selected player list
-                selectedPlayers.filter(
-                  (selectedPlayer) =>
-                    selectedPlayer.personId === player.personId
-                ).length > 0
-              }
-              onClick={() => setSelectedPlayers([...selectedPlayers, player])}
-            >
-              Add
-            </Button>
-          </ListItem>
-        ))}
-      </List>
+          )}
+        </Grid>
+        <Grid item xs lg />
+      </Grid>
+
+      <Typography align='center' variant='h6' gutterBottom component='div'>
+        Available Players
+      </Typography>
+
+      <Grid container spacing={0} justifyContent='center'>
+        <Grid item xs lg />
+        <Grid item xs={8} lg={6}>
+          <List>
+            {playerList.map((player) => (
+              <ListItem
+                key={`available-player-${player.lastName}-${player.personId}`}
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    alt={`${player.firstName} ${player.lastName}`}
+                    src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.personId}.png`}
+                  />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={`${player.firstName} ${player.lastName}`}
+                  secondary={`Position: ${player.pos}`}
+                />
+                <Button
+                  variant='contained'
+                  disabled={
+                    // disables add button if the player is alread in the selected player list
+                    selectedPlayers.filter(
+                      (selectedPlayer) =>
+                        selectedPlayer.personId === player.personId
+                    ).length > 0
+                  }
+                  onClick={() =>
+                    setSelectedPlayers([...selectedPlayers, player])
+                  }
+                >
+                  Add
+                </Button>
+              </ListItem>
+            ))}
+          </List>
+        </Grid>
+        <Grid item xs lg />
+      </Grid>
     </>
   );
 };
